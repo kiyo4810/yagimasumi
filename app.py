@@ -15,12 +15,12 @@ except Exception as e:
 
 def get_yagi_info_via_ai():
     today = datetime.date.today()
-    # 安定版の1.5-flashを使用
+    # 安定版の1.5-flashを直接指定
     model = genai.GenerativeModel('gemini-1.5-flash')
     
     prompt = f"""
     サバンナ八木真澄（八木真澄）さんの今日（{today}）以降のテレビ出演情報をネットで検索してまとめてください。
-    特に12月29日や1月2日のBSよしもと、その他の特番情報を探してください。
+    特に12月29日や1月2日のBSよしもと、その他の特番情報を優先して探してください。
     
     出力形式：
     【放送日】時間
@@ -30,6 +30,7 @@ def get_yagi_info_via_ai():
     
     try:
         # 検索ツール（google_search）を使って回答を生成
+        # この書き方が最もエラーが起きにくい世界標準の形式です
         response = model.generate_content(
             prompt,
             tools=[{"google_search_retrieval": {}}]
