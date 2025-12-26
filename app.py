@@ -3,17 +3,20 @@ import streamlit as st
 st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon="🇧🇷")
 
 # --- 背景画像の設定 (CSS) ---
-# images/yagi_bg.jpg を背景に敷き詰め、透明度を調整します
+# あなたのGitHubの画像URLを直接指定します
+# ※「kiyo4810」の部分がご自身のGitHubユーザー名と一致しているか確認してください
+bg_image_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi/main/images/yagi_bg.jpg"
+
 st.markdown(
     f"""
     <style>
     .stApp {{
-        background-image: url("app/static/images/yagi_bg.jpg");
+        background-image: url("{bg_image_url}");
         background-repeat: repeat;
-        background-size: 200px auto; /* 幅200px、高さは自動 */
+        background-size: 200px auto;
         background-attachment: fixed;
     }}
-    /* 背景の透明度を30%にするために、上に半透明の白を重ねます */
+    /* 背景を30%の濃さにする（70%の白を被せる） */
     .stApp::before {{
         content: "";
         position: fixed;
@@ -21,7 +24,7 @@ st.markdown(
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255, 255, 255, 0.7); /* 70%白を重ねる＝画像が30%に見える */
+        background-color: rgba(255, 255, 255, 0.7);
         z-index: -1;
     }}
     </style>
