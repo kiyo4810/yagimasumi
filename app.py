@@ -1,34 +1,12 @@
 import streamlit as st
-import xml.etree.ElementTree as ET
-import requests
 
 # サイトの基本設定
 st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon="📺")
 
-# --- stand.fmの最新情報を取得する関数（標準ライブラリ版） ---
-@st.cache_data(ttl=3600)
-def get_standfm_latest():
-    rss_url = "https://stand.fm/rss/channels/674833f669bc2015d09df281"
-    try:
-        response = requests.get(rss_url)
-        root = ET.fromstring(response.content)
-        items = root.findall('./channel/item')
-        
-        episodes = []
-        for item in items:
-            episodes.append({
-                'title': item.find('title').text,
-                'link': item.find('link').text,
-                'id': item.find('link').text.split('/')[-1]
-            })
-        return episodes
-    except Exception as e:
-        return []
-
 # --- タイトル ---
 st.title("📺 サバンナ八木真澄 応援ポータル")
 
-# --- セクション1：テレビ出演情報 ---
+# --- セクション1：最新のテレビ出演情報 ---
 st.subheader("🗓️ 最新のテレビ出演情報")
 st.link_button(
     "👉 八木さんの最新番組表を開く（bangumi.org）", 
@@ -42,33 +20,24 @@ st.divider()
 st.subheader("💰 stand.fm「お金のしゃべり場」")
 st.write("FP1級の八木塾長が「お金」についておしゃべり！")
 
-episodes = get_standfm_latest()
+# 【ここが重要！】チャンネル全体の埋め込みプレイヤー
+# これなら更新作業なしで、常に最新の放送が一番上に表示されます。
+st.components.v1.iframe("https://stand.fm/embed/channels/674833f669bc2015d09df281", height=450)
 
-if episodes:
-    latest_ep = episodes[0]
-    
-    # 最新回の埋め込みプレイヤー
-    st.components.v1.iframe(f"https://stand.fm/embed/episodes/{latest_ep['id']}", height=160)
-    
-    st.link_button("📻 番組TOPページ（stand.fm）", "https://stand.fm/channels/674833f669bc2015d09df281")
-
-    st.markdown("#### 📚 最近の配信アーカイブ")
-    for ep in episodes[:5]:
-        st.markdown(f"・[{ep['title']}]({ep['link']})")
-else:
-    st.warning("情報の取得に失敗しました。直接サイトをご確認ください。")
-    st.link_button("📻 stand.fm チャンネルへ", "https://stand.fm/channels/674833f669bc2015d09df281")
+st.link_button("📻 すべての過去放送を聴く", "https://stand.fm/channels/674833f669bc2015d09df281")
 
 st.divider()
 
 # --- セクション3：YouTube「芸人男塾」 ---
 st.subheader("🎙️ YouTube「芸人男塾」")
+# 2025年M-1結果回
 latest_video_id = "q10EVteYbgw" 
 st.video(f"https://www.youtube.com/watch?v={latest_video_id}")
 st.link_button("🏮「芸人男塾」TOPへ", "https://www.youtube.com/@yagiotokojuku")
 
 st.divider()
 
+# --- お約束のボタン ---
 if st.button("ブラジルの人、聞こえますかー！"):
     st.balloons()
     st.success("「聞こえたよー！」（ブラジルの裏側より）")
