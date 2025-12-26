@@ -1,22 +1,50 @@
 import streamlit as st
 
-# サイトのタイトル
-st.set_page_config(page_title="サバンナ八木 出演情報", page_icon="📺")
-st.title("📺 サバンナ八木真澄 出演情報")
+# サイトの基本設定
+st.set_page_config(page_title="サバンナ八木 出演情報＆男塾", page_icon="📺")
 
-st.write("自動取得の代わりに、1タップで最新の番組表を開けるようにしました。")
+# --- タイトル ---
+st.title("📺 サバンナ八木真澄 応援ポータル")
 
-# --- メインボタン ---
-# これを押すと、あなたがさっき見ていた「あの画面」が別タブで開きます
+# --- セクション1：番組表へのリンク ---
+st.subheader("🗓️ 最新のテレビ出演情報")
 st.link_button(
-    "👉 八木さんの最新番組表を開く（bangumi.org）", 
+    "👉 今日の八木さんをチェック（bangumi.org）", 
     "https://bangumi.org/talents/142568",
     type="primary"
 )
 
 st.divider()
 
-# おまけ：八木さんといえば！
+# --- セクション2：インターネットラジオ（YouTube「芸人男塾」） ---
+st.subheader("🎙️ YouTubeラジオ「芸人男塾」")
+st.write("八木塾長が熱く語る、全社会人必聴のネットラジオです。")
+
+# 1. 最新回の動画（サムネイル付きプレイボタン）
+# ※最新の動画IDをここに反映しています
+latest_video_id = "q10EVteYbgw" 
+st.video(f"https://www.youtube.com/watch?v={latest_video_id}")
+
+# 2. 直近5話へのリンク集
+st.markdown("#### 📚 最近の男塾（バックナンバー）")
+episodes = [
+    {"title": "2025 M-1グランプリの結果、、、", "id": "q10EVteYbgw"},
+    {"title": "八木流！営業の極意を学ぶ", "id": "BYpyn10_0S4"},
+    {"title": "芸人として進化した能力とは？", "id": "gnx9ExVTCaY"},
+    {"title": "上半期No.1講演会芸人の裏側", "id": "_EKozEr5BX0"},
+    {"title": "究極にお金が貯まる貯金法", "id": "dV_NiT3D6Vw"},
+]
+
+for ep in episodes:
+    st.markdown(f"・[{ep['title']}](https://www.youtube.com/watch?v={ep['id']})")
+
+# 3. チャンネルへのメインリンク
+st.write("")
+st.link_button("🏮「芸人男塾」チャンネルTOPへ", "https://www.youtube.com/@yagiotokojuku")
+
+st.divider()
+
+# --- お約束のボタン ---
 if st.button("ブラジルの人、聞こえますかー！"):
     st.balloons()
     st.success("「聞こえたよー！」（ブラジルの裏側より）")
