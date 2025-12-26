@@ -2,13 +2,39 @@ import streamlit as st
 
 st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon="🇧🇷")
 
+# --- 背景画像の設定 (CSS) ---
+# images/yagi_bg.jpg を背景に敷き詰め、透明度を調整します
+st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url("app/static/images/yagi_bg.jpg");
+        background-repeat: repeat;
+        background-size: 200px auto; /* 幅200px、高さは自動 */
+        background-attachment: fixed;
+    }}
+    /* 背景の透明度を30%にするために、上に半透明の白を重ねます */
+    .stApp::before {{
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7); /* 70%白を重ねる＝画像が30%に見える */
+        z-index: -1;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # --- タイトル ---
 st.title("🇧🇷 サバンナ八木 応援ポータル")
 
 # --- セクション1：テレビ出演情報 ---
 st.subheader("🗓️ 最新のテレビ出演情報")
 
-# 通常のボタン
 st.link_button(
     "👉 番組表を別タブで開く", 
     "https://bangumi.org/talents/142568",
@@ -22,7 +48,6 @@ st.divider()
 st.subheader("💰 stand.fm「お金のしゃべり場」")
 st.components.v1.iframe("https://stand.fm/embed/channels/674833f669bc2015d09df281", height=450)
 
-# HTMLで「新しいタブ」をより強く指示するリンクの作り方
 st.markdown(
     """
     <a href="https://stand.fm/channels/674833f669bc2015d09df281" target="_blank"
