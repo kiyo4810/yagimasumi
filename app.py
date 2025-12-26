@@ -17,7 +17,7 @@ st.markdown(
     <style>
     /* 全体の背景を設定 */
     .stApp {{
-        background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
                     url("{yagi_url}");
         background-repeat: repeat;
         background-size: 200px auto;
