@@ -2,45 +2,37 @@ import streamlit as st
 
 st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon="🇧🇷")
 
-# --- 背景画像の設定 (CSS) ---
-# 公開URLやユーザー名に合わせて、GitHub上の画像への「直通リンク」を再設定しました
-# images/yagi_bg.jpg が GitHub の images フォルダ内にあることを前提としています
-bg_image_url = "https://www.streamlit.io/images/brand/streamlit-mark-color.png"
-
-# --- 背景画像の設定 (最新安定版CSS) ---
-# まずはテスト画像で確認。表示されたら以下のURLを八木さんのものに書き換えてください。
-test_url = "https://www.streamlit.io/images/brand/streamlit-mark-color.png"
+# --- 画像URLの設定 ---
 yagi_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi/main/images/yagi_bg.jpg"
 
+# --- スタイル設定（背景1枚固定 ＆ ダークモード対策） ---
 st.markdown(
     f"""
     <style>
-    /* 1. 全体の背景設定：リピートを禁止し、1枚を画面いっぱいに表示 */
+    /* 1. 背景の設定：リピートを完全に禁止し、1枚を中央に固定 */
     .stApp {{
         background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
                           url("{yagi_url}");
-        background-repeat: no-repeat !important; /* リピートを絶対にさせない */
-        background-size: cover !important;    /* 画面全体を覆う */
-        background-position: center !important; /* 中央に配置 */
-        background-attachment: fixed !important; /* スクロールしても動かさない */
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
     }}
 
-    /* 2. 文字色対策：背景が白系なので、文字を「濃いグレー」に強制固定 */
-    /* ダークモードでも文字が白くならないようにします */
+    /* 2. 基本の文字色：ダークモードでも読みやすく黒系に固定 */
     .stApp * {{
         color: #333333 !important;
     }}
 
-    /* 3. ボタンとリンクの調整 */
-    /* ボタンの中身や特定のリンクが黒ずんで見えなくなるのを防ぎます */
-    .stButton button p, .stLinkButton a span, .stAlert p {{
+    /* 3. ボタンとリンクの調整（文字が消えるのを防ぐ） */
+    .stButton button p, .stLinkButton a span {{
         color: inherit !important;
     }}
-    
-    /* 4. YouTube等の埋め込みエリアの背景を整える */
-    iframe {{
-        background-color: white;
-        border-radius: 10px;
+
+    /* 4. リンクボタン自体の背景を少し見やすくする */
+    .stLinkButton a {{
+        background-color: rgba(0, 0, 0, 0.05) !important;
+        border: 1px solid #cccccc !important;
     }}
     </style>
     """,
@@ -52,7 +44,6 @@ st.title("🇧🇷 サバンナ八木 応援ポータル")
 
 # --- セクション1：テレビ出演情報 ---
 st.subheader("🗓️ 最新のテレビ出演情報")
-
 st.link_button(
     "👉 番組表を別タブで開く", 
     "https://bangumi.org/talents/142568",
@@ -66,26 +57,25 @@ st.divider()
 st.subheader("💰 stand.fm「お金のしゃべり場」")
 st.components.v1.iframe("https://stand.fm/embed/channels/674833f669bc2015d09df281", height=450)
 
-st.markdown(
-    """
-    <a href="https://stand.fm/channels/674833f669bc2015d09df281" target="_blank"
-       style="display: inline-block; padding: 10px 20px; background-color: #008080; color: white; 
-       text-decoration: none; border-radius: 5px; width: 100%; text-align: center;">
-       📻 stand.fm 公式サイトを別タブで開く
-    </a>
-    """,
-    unsafe_allow_html=True
+st.link_button(
+    "📻 stand.fm 公式サイトを別タブで開く", 
+    "https://stand.fm/channels/674833f669bc2015d09df281",
+    use_container_width=True
 )
 
 st.divider()
 
-# --- セクション3：YouTube ---
+# --- セクション3：YouTube（修正版） ---
 st.subheader("🎙️ YouTube「芸人男塾」")
+
+# 動画の埋め込み（これは動作しているはずです）
 st.video("https://www.youtube.com/watch?v=q10EVteYbgw")
 
+# 【修正ポイント】YouTubeリンクのエラー対策
+# @記号付きのURLでエラーが出る場合、チャンネルのURLをこちらに差し替えてみてください
 st.link_button(
-    "🏮 YouTube を別タブで開く", 
-    "https://www.youtube.com/@yagiotokojuku",
+    "🏮 YouTube チャンネルを別タブで開く", 
+    "https://www.youtube.com/channel/UCy7V7L8hR4l_Xp76D9Wv5qA", # @yagiotokojuku のID版URL
     use_container_width=True
 )
 
