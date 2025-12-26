@@ -1,5 +1,5 @@
 import streamlit as st
-from google import genai
+from google.genai import Client # ここを修正
 import datetime
 
 st.set_page_config(page_title="サバンナ八木 出演情報", page_icon="📺")
@@ -7,7 +7,9 @@ st.title("📺 サバンナ八木真澄 出演情報")
 
 # APIキーの設定
 api_key = st.secrets["GOOGLE_API_KEY"]
-client = genai.Client(api_key=api_key)
+client = Client(api_key=api_key) # ここを修正
+
+# --- 以下、前のコードと同じ ---
 
 def get_yagi_info_via_ai():
     # 今日から数日間の予定をAIに検索させる命令
