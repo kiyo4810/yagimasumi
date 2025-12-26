@@ -12,11 +12,10 @@ bg_image_url = "https://www.streamlit.io/images/brand/streamlit-mark-color.png"
 test_url = "https://www.streamlit.io/images/brand/streamlit-mark-color.png"
 yagi_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi/main/images/yagi_bg.jpg"
 
-# --- 背景と文字色の設定 (ダークモード対策版) ---
 st.markdown(
     f"""
     <style>
-    /* 全体の背景と文字色を強制指定 */
+    /* 1. 背景の設定 */
     .stApp {{
         background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
                     url("{yagi_url}");
@@ -25,14 +24,21 @@ st.markdown(
         background-attachment: fixed;
     }}
 
-    /* 文字色を黒（#111111）に固定し、ダークモードの白文字を上書き */
-    .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp span, .stApp label {{
+    /* 2. 【最重要】すべてのテキストを黒色に強制 */
+    /* * はすべての要素を指し、!important でダークモード設定を上書きします */
+    .stApp * {{
         color: #111111 !important;
     }}
 
-    /* 区切り線（divider）の色も少し濃くして見やすくする */
-    hr {{
-        border-color: rgba(0, 0, 0, 0.2) !important;
+    /* 3. ボタンの中の文字が黒くなると見にくい場合の再調整 */
+    /* type="primary" のボタンなどは白文字を維持したい場合に設定 */
+    .stButton button p {{
+        color: inherit !important;
+    }}
+
+    /* 4. iframeや特殊なウィジェットの背景も白に固定 */
+    .stMarkdown, .stText {{
+        color: #111111 !important;
     }}
     </style>
     """,
