@@ -1,7 +1,21 @@
 import streamlit as st
+import requests
 
 # サイトの基本設定
 st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon="📺")
+
+# --- stand.fmのデータを自動取得する関数 ---
+@st.cache_data(ttl=3600)  # 1時間ごとに最新情報をチェック
+def get_latest_standfm():
+    channel_id = "674833f669bc2015d09df281"
+    api_url = f"https://stand.fm/api/v1/channels/{channel_id}/episodes?limit=5"
+    try:
+        response = requests.get(api_url)
+        if response.status_code == 200:
+            return response.json()
+    except:
+        return None
+    return None
 
 # --- タイトル ---
 st.title("📺 サバンナ八木真澄 応援ポータル")
@@ -9,47 +23,48 @@ st.title("📺 サバンナ八木真澄 応援ポータル")
 # --- セクション1：最新のテレビ出演情報 ---
 st.subheader("🗓️ 最新のテレビ出演情報")
 st.link_button(
-    "👉 今日の八木さんをチェック（bangumi.org）", 
+    "👉 八木さんの最新番組表を開く（bangumi.org）", 
     "https://bangumi.org/talents/142568",
     type="primary"
 )
 
 st.divider()
 
-# --- セクション2：インターネットラジオ（stand.fm「お金のしゃべり場」） ---
+# --- セクション2：stand.fm「お金のしゃべり場」（自動更新版） ---
 st.subheader("💰 stand.fm「お金のしゃべり場」")
-st.write("FP1級の八木塾長が、資産運用や税金について分かりやすく解説！")
+st.write("FP1級の八木塾長が「お金」についておしゃべり！")
 
-# 1. メインリンク
-st.link_button("📻 番組TOPページ（stand.fm）", "https://stand.fm/channels/674833f669bc2015d09df281")
+data = get_latest_standfm()
 
-# 2. 最新回の埋め込み（プレイボタン）
-# stand.fmの最新回（#47）を埋め込み表示
-st.components.v1.iframe("https://stand.fm/embed/episodes/675e8e818816828555e11942", height=160)
+if data and "episodes" in data:
+    episodes = data["episodes"]
+    latest_ep = episodes[0]
+    
+    # 1. 最新回の埋め込みプレイヤー
+    # APIから取得した最新のIDを使って自動生成
+    st.components.v1.iframe(f"https://stand.fm/embed/episodes/{latest_ep['id']}", height=160)
+    
+    # 2. メインリンク
+    st.link_button("📻 番組TOPページ（stand.fm）", "https://stand.fm/channels/674833f669bc2015d09df281")
 
-# 3. 直近5話へのリンク
-st.markdown("#### 📚 最近の配信アーカイブ")
-standfm_episodes = [
-    {"title": "#47 現物よりETFが有利？金投資の「譲渡所得と税金」の話", "url": "https://stand.fm/episodes/675e8e818816828555e11942"},
-    {"title": "#46 ルーティンにすればいい。「ふるさと納税」の話", "url": "https://stand.fm/episodes/675ab0a43f800e4719c8f253"},
-    {"title": "#45 真似できないビジネスモデル。「北海道」の話", "url": "https://stand.fm/episodes/6751680d96d27457e504627b"},
-    {"title": "#44 何事も構図を理解しよう。「営業マニュアル」の話", "url": "https://stand.fm/episodes/6748364b633917a9446be7a0"},
-    {"title": "#43 勉強する時は「感情」もセット。「勉強法」の話", "url": "https://stand.fm/episodes/673ec2395d97f26d36e2cc4a"},
-]
-
-for ep in standfm_episodes:
-    st.markdown(f"・[{ep['title']}]({ep['url']})")
+    # 3. 直近5話へのリンク（自動生成）
+    st.markdown("#### 📚 最近の配信アーカイブ")
+    for ep in episodes:
+        title = ep.get("title", "無題の配信")
+        url = f"https://stand.fm/episodes/{ep['id']}"
+        st.markdown(f"・[{title}]({url})")
+else:
+    # データが取れなかった時のバックアップ表示
+    st.warning("ラジオの最新情報を読み込み中です。直接サイトをご確認ください。")
+    st.link_button("📻 stand.fm チャンネルへ", "https://stand.fm/channels/674833f669bc2015d09df281")
 
 st.divider()
 
 # --- セクション3：YouTube「芸人男塾」 ---
 st.subheader("🎙️ YouTube「芸人男塾」")
-st.write("芸人としての心構えから、M-1の裏側まで熱く語るチャンネル。")
-
-# 最新動画
+# YouTubeも自動化可能ですが、まずは確実な最新動画1件を表示
 latest_video_id = "q10EVteYbgw" 
 st.video(f"https://www.youtube.com/watch?v={latest_video_id}")
-
 st.link_button("🏮「芸人男塾」TOPへ", "https://www.youtube.com/@yagiotokojuku")
 
 st.divider()
