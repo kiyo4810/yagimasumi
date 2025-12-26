@@ -12,10 +12,11 @@ bg_image_url = "https://www.streamlit.io/images/brand/streamlit-mark-color.png"
 test_url = "https://www.streamlit.io/images/brand/streamlit-mark-color.png"
 yagi_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi/main/images/yagi_bg.jpg"
 
+# --- 背景と文字色の設定 (ダークモード対策版) ---
 st.markdown(
     f"""
     <style>
-    /* 全体の背景を設定 */
+    /* 全体の背景と文字色を強制指定 */
     .stApp {{
         background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
                     url("{yagi_url}");
@@ -23,10 +24,15 @@ st.markdown(
         background-size: 200px auto;
         background-attachment: fixed;
     }}
-    
-    /* コンテンツを見やすくするために背景を白っぽく透過させる */
-    header, .main, .stApp {{
-        background-color: rgba(255, 255, 255, 0.3);
+
+    /* 文字色を黒（#111111）に固定し、ダークモードの白文字を上書き */
+    .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp span, .stApp label {{
+        color: #111111 !important;
+    }}
+
+    /* 区切り線（divider）の色も少し濃くして見やすくする */
+    hr {{
+        border-color: rgba(0, 0, 0, 0.2) !important;
     }}
     </style>
     """,
