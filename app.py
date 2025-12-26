@@ -1,18 +1,28 @@
 import streamlit as st
-import feedparser
+import xml.etree.ElementTree as ET
+import requests
 
 # サイトの基本設定
 st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon="📺")
 
-# --- stand.fmの最新情報を取得する関数 ---
-@st.cache_data(ttl=3600)  # 1時間キャッシュ
+# --- stand.fmの最新情報を取得する関数（標準ライブラリ版） ---
+@st.cache_data(ttl=3600)
 def get_standfm_latest():
-    # stand.fmの公式RSSフィードURL
     rss_url = "https://stand.fm/rss/channels/674833f669bc2015d09df281"
     try:
-        feed = feedparser.parse(rss_url)
-        return feed.entries
-    except:
+        response = requests.get(rss_url)
+        root = ET.fromstring(response.content)
+        items = root.findall('./channel/item')
+        
+        episodes = []
+        for item in items:
+            episodes.append({
+                'title': item.find('title').text,
+                'link': item.find('link').text,
+                'id': item.find('link').text.split('/')[-1]
+            })
+        return episodes
+    except Exception as e:
         return []
 
 # --- タイトル ---
@@ -28,30 +38,25 @@ st.link_button(
 
 st.divider()
 
-# --- セクション2：stand.fm「お金のしゃべり場」（自動更新版） ---
+# --- セクション2：stand.fm「お金のしゃべり場」 ---
 st.subheader("💰 stand.fm「お金のしゃべり場」")
 st.write("FP1級の八木塾長が「お金」についておしゃべり！")
 
-entries = get_standfm_latest()
+episodes = get_standfm_latest()
 
-if entries:
-    # 最新回を取得
-    latest_ep = entries[0]
-    # URLからエピソードIDを抽出 (https://stand.fm/episodes/xxxxx -> xxxxx)
-    latest_id = latest_ep.link.split('/')[-1]
+if episodes:
+    latest_ep = episodes[0]
     
-    # 1. 最新回の埋め込みプレイヤー
-    st.components.v1.iframe(f"https://stand.fm/embed/episodes/{latest_id}", height=160)
+    # 最新回の埋め込みプレイヤー
+    st.components.v1.iframe(f"https://stand.fm/embed/episodes/{latest_ep['id']}", height=160)
     
-    # 2. メインリンク
     st.link_button("📻 番組TOPページ（stand.fm）", "https://stand.fm/channels/674833f669bc2015d09df281")
 
-    # 3. 直近5話へのリンク
     st.markdown("#### 📚 最近の配信アーカイブ")
-    for entry in entries[:5]:
-        st.markdown(f"・[{entry.title}]({entry.link})")
+    for ep in episodes[:5]:
+        st.markdown(f"・[{ep['title']}]({ep['link']})")
 else:
-    st.warning("ラジオの最新情報を読み込み中です。直接サイトをご確認ください。")
+    st.warning("情報の取得に失敗しました。直接サイトをご確認ください。")
     st.link_button("📻 stand.fm チャンネルへ", "https://stand.fm/channels/674833f669bc2015d09df281")
 
 st.divider()
