@@ -15,35 +15,37 @@ yagi_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi/main/images/ya
 st.markdown(
     f"""
     <style>
-    /* 1. 背景の設定 */
+    /* 1. 背景の設定：中央に1枚だけ、動かないように固定 */
     .stApp {{
-        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+        background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
                     url("{yagi_url}");
-        background-repeat: repeat;
-        background-size: 200px auto;
-        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover; /* 画面いっぱいに広げる */
+        background-position: center; /* 中央に配置 */
+        background-attachment: fixed; /* スクロールしても動かさない */
     }}
 
-    /* 2. 基本のテキストを黒色に強制 */
-    .stApp * {{
+    /* 2. 基本の文字色：ダークモードでも白くならないよう黒に固定 */
+    .stApp {{
         color: #111111 !important;
     }}
 
-    /* 3. 【修正ポイント】ボタンの中の文字だけは白くする */
-    /* ボタン（button要素）の中にある文字（p, span）を白（#FFFFFF）に強制します */
-    .stButton button p, 
-    .stButton button span, 
-    div[data-testid="stBaseButton-primary"] p,
-    div[data-testid="stBaseButton-secondary"] p {{
-        color: #FFFFFF !important;
+    /* 3. 各種見出しやテキスト要素を黒で統一 */
+    .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp span, .stApp li {{
+        color: #111111 !important;
     }}
 
-    /* 4. リンクボタン（YouTubeリンクなど）への対策 */
-    /* aタグ（リンク）になっているボタン内の文字も白くします */
-    .stApp a span {{
-        color: #FFFFFF !important;
-    {{
+    /* 4. ボタンの文字色：ボタンだけは「背景になじむ色」にするため強制解除 */
+    /* これでボタンの中身が白塗りや黒塗りで見えなくなるのを防ぎます */
+    .stButton button p, .stLinkButton a span {{
+        color: inherit !important; 
+    }}
 
+    /* 5. リンクボタンの背景色（YouTubeなど）を少し濃くして視認性アップ */
+    .stLinkButton a {{
+        background-color: #f0f2f6 !important;
+        border: 1px solid #d1d5db !important;
+    }}
     </style>
     """,
     unsafe_allow_html=True
