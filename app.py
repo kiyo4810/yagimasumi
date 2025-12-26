@@ -5,7 +5,7 @@ st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon
 # --- 背景画像の設定 (CSS) ---
 # 公開URLやユーザー名に合わせて、GitHub上の画像への「直通リンク」を再設定しました
 # images/yagi_bg.jpg が GitHub の images フォルダ内にあることを前提としています
-bg_image_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi/main/images/yagi_bg.jpg"
+bg_image_url = "https://www.streamlit.io/images/brand/streamlit-mark-color.png"
 
 st.markdown(
     f"""
