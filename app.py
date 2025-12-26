@@ -66,14 +66,16 @@ st.link_button(
 
 st.divider()
 
-# --- YouTube（エラー対策強化版） ---
+# --- セクション3：YouTube ---
 st.subheader("🎙️ YouTube「芸人男塾」")
+
+# 動画埋め込み
 st.video("https://www.youtube.com/watch?v=q10EVteYbgw")
 
-# 【修正】エラーの出る @ 形式をやめ、最も安定するチャンネルID形式に固定しました
+# 【ここを修正】教えていただいた確実なURLに差し替え
 st.link_button(
     "🏮 YouTube チャンネルを別タブで開く", 
-    "https://www.youtube.com/channel/UCy7V7L8hR4l_Xp76D9Wv5qA", 
+    "https://www.youtube.com/channel/UCYhNHFMZZ7gGal-RLCm_65Q", 
     use_container_width=True
 )
 
