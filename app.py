@@ -1,60 +1,48 @@
 import streamlit as st
-import requests
-from bs4 import BeautifulSoup
-import re
+from google import genai
+import datetime
 
 st.set_page_config(page_title="サバンナ八木 出演情報", page_icon="📺")
 st.title("📺 サバンナ八木真澄 出演情報")
 
-def get_yagi_schedule():
-    url = "https://bangumi.org/talents/142568"
-    # 人間がブラウザでアクセスしているように見せかける高度なヘッダー
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
-        "Referer": "https://www.google.com/"
-    }
+# APIキーの設定
+api_key = st.secrets["GOOGLE_API_KEY"]
+client = genai.Client(api_key=api_key)
+
+def get_yagi_info_via_ai():
+    # 今日から数日間の予定をAIに検索させる命令
+    today = datetime.date.today()
+    prompt = f"""
+    今日（{today}）以降の、サバンナ八木真澄（八木真澄）さんのテレビ出演情報をインターネットで検索してまとめてください。
+    特に、12月29日や1月2日の『BSよしもと』などの予定があれば詳しく教えてください。
+    
+    以下の形式で出力してください：
+    【放送日】時間
+    【放送局】
+    【番組名】
+    """
     
     try:
-        # セッションを使ってアクセスを安定させる
-        session = requests.Session()
-        res = session.get(url, headers=headers, timeout=15)
-        res.encoding = res.apparent_encoding # 文字化け防止
-        
-        soup = BeautifulSoup(res.text, "html.parser")
-        
-        # 【戦略】特定のタグを探すのではなく、テキスト全体から「日付＋番組」っぽい部分を抽出
-        raw_text = soup.get_text(separator="\n")
-        lines = raw_text.split('\n')
-        
-        extracted = []
-        for line in lines:
-            line = line.strip()
-            # 「12/29」や「12月29日」や「1月」という文字が含まれる行を拾う
-            if re.search(r'(\d{1,2}/\d{1,2}|\d{1,2}月\d{1,2}日)', line):
-                # 短すぎず長すぎない、意味のありそうな行だけを採用
-                if 10 < len(line) < 200:
-                    extracted.append(line)
-        
-        # 重複を削除
-        return list(dict.fromkeys(extracted))
-        
+        # AIがネットを検索して回答を生成（Search機能を使用）
+        response = client.models.generate_content(
+            model='gemini-2.0-flash', # 最新の2.0なら検索能力が最強です
+            contents=prompt,
+            config={
+                'tools': [{'google_search': {}}]
+            }
+        )
+        return response.text
     except Exception as e:
-        return [f"取得エラーが発生しました: {e}"]
+        return f"AI検索中にエラーが発生しました: {e}"
 
-# データの取得と表示
-with st.spinner('番組表のガードを突破して読み込み中...'):
-    data = get_yagi_schedule()
-
-if data:
-    st.success(f"最新の番組情報を見つけました！")
-    for s in data:
-        st.info(s)
+# サイトの表示
+if st.button('最新の出演情報をAIで検索する'):
+    with st.spinner('AIがネット上の番組表を巡回中...'):
+        result = get_yagi_info_via_ai()
+        st.markdown("### ✨ AIが見つけた最新スケジュール")
+        st.write(result)
 else:
-    st.warning("現在、自動取得がサイト側にブロックされているか、予定が掲載されていません。")
-    st.markdown(f"### 💡 [ここをクリックして公式サイトを直接確認](https://bangumi.org/talents/142568)")
-    st.write("※公式サイトに予定があるのにここに表示されない場合は、セキュリティ制限が原因です。")
+    st.info("上のボタンを押すと、AIが最新の予定をネットで調べて表示します。")
 
 st.divider()
-st.caption("データ取得元: bangumi.org")
+st.caption("※情報はAIが検索した結果に基づきます。正確な情報は各局の公式サイトをご確認ください。")
