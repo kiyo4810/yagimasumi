@@ -1,15 +1,125 @@
 {
-  "lastUpdate": "2025/12/26 12:09:46",
+  "lastUpdate": "2025/12/26 12:12:14",
   "raw_data": [
-    "【放送予定】 ご利用の地域",
-    "11/20 【速報】 ジョイマン、前人未到の3連覇なるか⁉営業‐1グランプリ2025 総決算スペシャル～営業&学園祭 出演回数ランキングTOP10～",
-    "06/14 【速報】 上半期の講演会出演回数ランキング1位に輝いた「サバンナ」の八木真澄（撮影・塩野 遥寿）",
-    "06/27 【速報】 合格率17%難関資格取得のサバンナ八木、「講演会」出演回数ランキングで1位に「お金の話や勉強の仕方を」",
-    "06/14 【速報】 サバンナ八木 レギュラー0→FP1級取得→講演出演1位 吉本芸人「営業―1グランプリ上半期」総合2位",
-    "01/10 【速報】 朝ドラ「ブギウギ」脚本家が語る…メッセ黒田出演の真相とは？近藤芳正＆サバンナ八木と大阪・新世界さんぽ",
-    "11/26 【速報】 サバンナ八木真澄、「年末の風物詩に」BSよしもと特番『営業―1グランプリ2024』に自信 12月14日放送",
-    "09/25 【速報】 Youtube動画総視聴回数280万超の大人気コンテンツ『営業‐1グランプリ2024 総決算SP』放送決定!!12月14日（土）12:00～14:00放送",
-    "04/24 【速報】 東野幸治＆サバンナ八木が、山下智久主演ドラマのロケ地となったお寺へ!『東野ぶらぶらチーキーズ』BSよしもとで4月27日放送",
-    "09/29 【速報】 サバンナ、結成28年で『徹子の部屋』初出演！あの“毒舌3人組”からサプライズメッセージ"
+    {
+      "text": "【放送予定】 総合ランキング",
+      "url": "https://bangumi.org/ranking/"
+    },
+    {
+      "text": "【放送予定】 ドラマランキング",
+      "url": "https://bangumi.org/ranking/?genre_id=2"
+    },
+    {
+      "text": "【放送予定】 バラエティランキング",
+      "url": "https://bangumi.org/ranking/?genre_id=5"
+    },
+    {
+      "text": "【放送予定】 アニメランキング",
+      "url": "https://bangumi.org/ranking/?genre_id=8"
+    },
+    {
+      "text": "【放送予定】 音楽ランキング",
+      "url": "https://bangumi.org/ranking/?genre_id=4"
+    },
+    {
+      "text": "【放送予定】 スポーツランキング",
+      "url": "https://bangumi.org/ranking/?genre_id=3"
+    },
+    {
+      "text": "【放送予定】 地上波番組表",
+      "url": "https://bangumi.org/epg/td?broad_cast_date=20251226&amp;ggm_group_id=42"
+    },
+    {
+      "text": "【放送予定】 ラジオ番組表",
+      "url": "https://bangumi.org/epg/radio?broad_cast_date=20251226&amp;ggm_group_id=42"
+    },
+    {
+      "text": "【放送予定】 プライバシーポリシー",
+      "url": "https://www.ipg.co.jp/privacypolicy"
+    },
+    {
+      "text": "【放送予定】 当サイトにおける個人情報の取り扱い",
+      "url": "https://bangumi.org/policies/privacy_policy"
+    },
+    {
+      "text": "【放送予定】 お問い合わせ",
+      "url": "https://bangumi.org/inquiries"
+    },
+    {
+      "text": "【放送予定】 日本タレント名鑑(VIPタイムズ)",
+      "url": "https://www.vip-times.co.jp/"
+    },
+    {
+      "text": "【放送予定】 吉本興業株式会社",
+      "url": "https://www.yoshimoto.co.jp/"
+    },
+    {
+      "text": "11/20 【速報】 ジョイマン、前人未到の3連覇なるか⁉営業‐1グランプリ2025 総決算スペシャル～営業&学園祭 出演回数ランキングTOP10～",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9pZl9LZ3BzZFQ0TEt3b0JvSWRLWGRqSEt5eS00bzduQ25WcVV6Rk5zS0VpTW1pcExCbFZiVGVOZUtTX1U2djJxUUpQSjhzazlmNWNvUGwyTDQxN2ZoWmN1UlhrZ2pMdzdjMFE?oc=5"
+    },
+    {
+      "text": "06/14 【速報】 上半期の講演会出演回数ランキング1位に輝いた「サバンナ」の八木真澄（撮影・塩野 遥寿）",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQUUZOdENEb0RTTkJZYkJuODYwMGl6RElERmszdVBidVpIaGlhX180a1A2RmxTRGtpR1V2M1paSVdUVWJmSlB4Q250Szg4SVRPQnlUdW5GNHNWcUhBbnA2TXBzNXI5aVNhU2FKZ1UtTGNwVnZHUUgyT180TE9MN1E2LXFDRWdFMHBsTVpybGxiRGRRZjJLdFE?oc=5"
+    },
+    {
+      "text": "06/27 【速報】 合格率17%難関資格取得のサバンナ八木、「講演会」出演回数ランキングで1位に「お金の話や勉強の仕方を」",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBQQVNpWUVfZXZqT2ZxWVdNcU1vNnBlOEVhdXdLdHpnX3dSSC1zdWEyQ296bVQtejg1SFY5UWpnMUoxdG1rdnNaRkM4X0txbkt2ME5fMQ?oc=5"
+    },
+    {
+      "text": "06/14 【速報】 サバンナ八木 レギュラー0→FP1級取得→講演出演1位 吉本芸人「営業―1グランプリ上半期」総合2位",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPb1BFcVRhMGxxdWdxamFxX3UtdVQ3MzFiQk1ScFF1Qmc1SnBmSE1uQjJJQVBhaVVxeGlRTkNwMkx3bm9YOFBrSThoQ0hVZjhxeWlrNlBmSkxZbkc4cFJicU1nOVFhcm9IdFRZQi1yRldES0JYczBaOXhFWXpFN0tVUGFwMlhrekJEclhXR0dlOUttanp4N0E?oc=5"
+    },
+    {
+      "text": "01/10 【速報】 朝ドラ「ブギウギ」脚本家が語る…メッセ黒田出演の真相とは？近藤芳正＆サバンナ八木と大阪・新世界さんぽ",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9xZmZ6SkI3eFItSGVlNWNHVUdkYkRNZ0NXSmowYVFLTmpSRkdCREc0R1N1eEVhbGVaV3lRNVUyOEhzMWFSTlFpbWtzc1RHWDloX2hlOVNBRnZvdThZcGxkc3ZIaUR4RmthZmc?oc=5"
+    },
+    {
+      "text": "11/26 【速報】 サバンナ八木真澄、「年末の風物詩に」BSよしもと特番『営業―1グランプリ2024』に自信 12月14日放送",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE05aVZoaC1DOV9OSjVHTnVGeTVjczVISVE0RGZGdktaa1hTaDEzczhUaWJuRU83ODE0R0JLUUxOeFBNOUkycWpJSVRCdjgwaHBVaEcw?oc=5"
+    },
+    {
+      "text": "09/25 【速報】 Youtube動画総視聴回数280万超の大人気コンテンツ『営業‐1グランプリ2024 総決算SP』放送決定!!12月14日（土）12:00～14:00放送",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5mc1pBQTJ6MkpXTk56UlBfUEVHZmE4Tl9sRzI4eWJVNjRNYW9SSkdoQTh0N2cxaVZ5MnJMQ0dPeDNxNVFlbzhaN2tDeE8wWDA5QTJ6MUwtUnVoei15Vjd2SHZfYXdraW5KNXc?oc=5"
+    },
+    {
+      "text": "04/24 【速報】 東野幸治＆サバンナ八木が、山下智久主演ドラマのロケ地となったお寺へ!『東野ぶらぶらチーキーズ』BSよしもとで4月27日放送",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5nMjhLOUJ6NEZwcTFNLW5IRnpUNDR0Q0VrSVdQeE81RXN3eFZhOXBjclhnb0lqSnM2cjhPWm9wNUh3VnNsZWtHMw?oc=5"
+    },
+    {
+      "text": "09/29 【速報】 サバンナ、結成28年で『徹子の部屋』初出演！あの“毒舌3人組”からサプライズメッセージ",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBRXzJZeGdQNDZoRG5CSUN3bDdUWlRnNHlkeUlObXllelU0TURfbU9oUjU4bEFJaTZIbDBwM1c1Z0ZoT2hvVkJmMUVjVXhkRXl4OFHSAVdBVV95cUxNUTl4RzdlTERWeGExWDVlTndiaE5oQWliLWxHU2FtT25FcEQ5MFlibjVkdmxwcTFhNlFWeXNxd2c1WVZvVVhrTjVueDhUdHRoNUM0OTcwVzg?oc=5"
+    },
+    {
+      "text": "02/22 【速報】 かつみ♥さゆり、サバンナ八木ら出演!『WAN’S Dog Expo 2024 Awaji Island』2月24日・25日開催!",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBQSm8wMC1raU93SUNlYW9WSHhxU2dWeTlXRjlQd2ZldmRMcXhKZ2RBdzhfR2JjQ25abjNOS1o3Sk0xOWRKWWNtbA?oc=5"
+    },
+    {
+      "text": "03/04 【速報】 ”営業芸人”サバンナ八木「僕はテレビのレギュラーゼロ。相方15本…これで僕、何とか生きてます」営業の重要性語る",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9UWkpWSEpaNTFPeVhHUmZ1UVRMbGdjaVg1cnFJa1V0eUVGVmlhaFFQSGhJRzZDSERQMHdUY21nTTJ3UExlSkZQRERHWGlqX0JaTmtB?oc=5"
+    },
+    {
+      "text": "09/29 【速報】 サバンナ：高橋＆八木の“コンビ格差”のうわさに言及 初出演の「徹子の部屋」で",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE03YUZPc0ZDd0RsOXM3UGQ4UDFoclRHeUVwSTJCVXNZQmlLMXBqbWZGNUh2YVE2azd5UmpoRnZ5Wk1zRkJNWDc4MlNmMnVYZGZMelZ3MkJBX0lGQjBsejBIR3NVMEJuQWV3TmtV?oc=5"
+    },
+    {
+      "text": "04/27 【速報】 サバンナ八木、“ヤギ”なのに『ズートピア』出演ならず…「出ていないので、探さないで」",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9FS244LWhWZEpLdFUxclVfQ0YyQlo4cktHaE0xWDk1ZGpxU3o4ZW43QXZmYUR5UWxnUGpTeFE1eTVfVVRYUVBXLUJ4SEU3ZnlORXVDWVBROVNfSUItODZycVc1YUsxVDg?oc=5"
+    },
+    {
+      "text": "04/27 【速報】 サバンナ八木、ディズニー映画出演ならずも嫉妬なし",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBnMVZZbjBMdGxRUTB3em5zWHVxdURybmdLeFdiWHdLNnVpYlFIYjJpSDlqZlJhSkNvOXhfOV96OUJ6bFVhWXdhT181UlUweVVIcTVVeU53?oc=5"
+    },
+    {
+      "text": "01/08 【速報】 「映画ドラえもん」第37弾に「サバンナ」高橋＆八木が敵役でゲスト出演 : 映画ニュース",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1vNTQxTHg1bWl5Tm5BSXdUWlNDVDA4MU9JdzhwQTZUbFZrZzBaMU45cTczS2hpMkkxOFp5OThDQlhqa2FjTTBIaQ?oc=5"
+    },
+    {
+      "text": "01/10 【速報】 「映画ドラえもん」新作にサバンナがゲスト出演、「仲間ではなく敵でした」",
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1OeDFSQUdwZDFxWlpPOUhTNzczUXZtODV2UXJ4TE9KaEY5VlB2RU5mbkJCZjF4YURyVVBjU1c2OTJ4T2NMUWJ5dlpRaw?oc=5"
+    },
+    {
+      "text": "04/22 【速報】 TBS『Nスタ』にお笑いタレント・サバンナ八木さんが出演 昨年にFP1級を取得し話題にもなっていた「ブラジルネクタイで頑張ります」",
+      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBqWGxHcGNPRlQtQWxPVERmZklDLThzUDVkN3AwX1k0VndmQ081ZEpPeklKYUFmUWhpMGExTG5NZDlLQVN5RVE?oc=5"
+    }
   ]
 }
