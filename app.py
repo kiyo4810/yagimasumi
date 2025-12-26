@@ -24,22 +24,26 @@ st.markdown(
         background-attachment: fixed;
     }}
 
-    /* 2. 【最重要】すべてのテキストを黒色に強制 */
-    /* * はすべての要素を指し、!important でダークモード設定を上書きします */
+    /* 2. 基本のテキストを黒色に強制 */
     .stApp * {{
         color: #111111 !important;
     }}
 
-    /* 3. ボタンの中の文字が黒くなると見にくい場合の再調整 */
-    /* type="primary" のボタンなどは白文字を維持したい場合に設定 */
-    .stButton button p {{
-        color: inherit !important;
+    /* 3. 【修正ポイント】ボタンの中の文字だけは白くする */
+    /* ボタン（button要素）の中にある文字（p, span）を白（#FFFFFF）に強制します */
+    .stButton button p, 
+    .stButton button span, 
+    div[data-testid="stBaseButton-primary"] p,
+    div[data-testid="stBaseButton-secondary"] p {{
+        color: #FFFFFF !important;
     }}
 
-    /* 4. iframeや特殊なウィジェットの背景も白に固定 */
-    .stMarkdown, .stText {{
-        color: #111111 !important;
-    }}
+    /* 4. リンクボタン（YouTubeリンクなど）への対策 */
+    /* aタグ（リンク）になっているボタン内の文字も白くします */
+    .stApp a span {{
+        color: #FFFFFF !important;
+    {{
+
     </style>
     """,
     unsafe_allow_html=True
