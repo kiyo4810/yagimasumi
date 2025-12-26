@@ -15,36 +15,32 @@ yagi_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi/main/images/ya
 st.markdown(
     f"""
     <style>
-    /* 1. 背景の設定：中央に1枚だけ、動かないように固定 */
+    /* 1. 全体の背景設定：リピートを禁止し、1枚を画面いっぱいに表示 */
     .stApp {{
-        background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                    url("{yagi_url}");
-        background-repeat: no-repeat;
-        background-size: cover; /* 画面いっぱいに広げる */
-        background-position: center; /* 中央に配置 */
-        background-attachment: fixed; /* スクロールしても動かさない */
+        background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                          url("{yagi_url}");
+        background-repeat: no-repeat !important; /* リピートを絶対にさせない */
+        background-size: cover !important;    /* 画面全体を覆う */
+        background-position: center !important; /* 中央に配置 */
+        background-attachment: fixed !important; /* スクロールしても動かさない */
     }}
 
-    /* 2. 基本の文字色：ダークモードでも白くならないよう黒に固定 */
-    .stApp {{
-        color: #111111 !important;
+    /* 2. 文字色対策：背景が白系なので、文字を「濃いグレー」に強制固定 */
+    /* ダークモードでも文字が白くならないようにします */
+    .stApp * {{
+        color: #333333 !important;
     }}
 
-    /* 3. 各種見出しやテキスト要素を黒で統一 */
-    .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp span, .stApp li {{
-        color: #111111 !important;
+    /* 3. ボタンとリンクの調整 */
+    /* ボタンの中身や特定のリンクが黒ずんで見えなくなるのを防ぎます */
+    .stButton button p, .stLinkButton a span, .stAlert p {{
+        color: inherit !important;
     }}
-
-    /* 4. ボタンの文字色：ボタンだけは「背景になじむ色」にするため強制解除 */
-    /* これでボタンの中身が白塗りや黒塗りで見えなくなるのを防ぎます */
-    .stButton button p, .stLinkButton a span {{
-        color: inherit !important; 
-    }}
-
-    /* 5. リンクボタンの背景色（YouTubeなど）を少し濃くして視認性アップ */
-    .stLinkButton a {{
-        background-color: #f0f2f6 !important;
-        border: 1px solid #d1d5db !important;
+    
+    /* 4. YouTube等の埋め込みエリアの背景を整える */
+    iframe {{
+        background-color: white;
+        border-radius: 10px;
     }}
     </style>
     """,
