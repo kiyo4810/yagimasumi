@@ -2,31 +2,51 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>八木真澄 出演情報（自動更新）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サバンナ八木さん出演情報（自動更新）</title>
     <style>
-        body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; }
-        .program { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
-        .date { font-weight: bold; color: #d35400; }
+        body { font-family: "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 600px; margin: 20px auto; padding: 20px; background-color: #f0f2f5; }
+        h1 { color: #1a73e8; text-align: center; border-bottom: 3px solid #1a73e8; padding-bottom: 10px; }
+        .update-time { font-size: 0.8em; color: #666; text-align: right; margin-bottom: 20px; }
+        .program-card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-left: 5px solid #1a73e8; }
+        .no-data { text-align: center; color: #888; margin-top: 50px; }
+        .footer { font-size: 0.7em; color: #aaa; text-align: center; margin-top: 30px; }
     </style>
 </head>
 <body>
+
     <h1>サバンナ八木さん出演情報</h1>
+    <div id="update-time" class="update-time"></div>
     <div id="list">読み込み中...</div>
 
     <script>
-        // GitHubに保存されるjsonファイルを読み込む
-        fetch('./data.json')
-            .then(res => res.json())
+        // 自分のGitHubリポジトリにあるdata.jsonを読み込む
+        // キャッシュを避けるためタイムスタンプを付与
+        fetch('./data.json?t=' + new Date().getTime())
+            .then(res => {
+                if (!res.ok) throw new Error('データが見つかりません。GASを一度実行してください。');
+                return res.json();
+            })
             .then(data => {
+                document.getElementById('update-time').innerText = '最終更新: ' + data.lastUpdate;
                 const list = document.getElementById('list');
-                list.innerHTML = data.map(item => `
-                    <div class="program">
-                        <div class="date">${item.date}</div>
-                        <div><strong>${item.title}</strong></div>
-                        <div>${item.station}</div>
+                
+                if (!data.raw_data || data.raw_data.length === 0) {
+                    list.innerHTML = '<div class="no-data">現在、予定されている出演番組はありません。</div>';
+                    return;
+                }
+
+                list.innerHTML = data.raw_data.map(item => `
+                    <div class="program-card">
+                        <div>${item}</div>
                     </div>
-                `).join('') || '現在、予定されている出演番組はありません。';
+                `).join('');
+            })
+            .catch(err => {
+                document.getElementById('list').innerHTML = `<div class="no-data">${err.message}</div>`;
             });
     </script>
+
+    <div class="footer">Source: bangumi.org / Powered by GAS & GitHub Pages</div>
 </body>
 </html>
