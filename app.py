@@ -5,7 +5,7 @@ st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon
 # --- 背景画像の設定 (CSS) ---
 # あなたのGitHubの画像URLを直接指定します
 # ※「kiyo4810」の部分がご自身のGitHubユーザー名と一致しているか確認してください
-bg_image_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi/main/images/yagi_bg.jpg"
+bg_image_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi-info/main/images/yagi_bg.jpg"
 
 st.markdown(
     f"""
