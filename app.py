@@ -8,11 +8,13 @@ st.title("📺 サバンナ八木真澄 応援ポータル")
 
 # --- セクション1：最新のテレビ出演情報 ---
 st.subheader("🗓️ 最新のテレビ出演情報")
-# このボタンを押すと、bangumi.org が別タブで開きます
+st.write("「bangumi.org」の八木さん専用ページを別タブで開きます。")
+# この【ボタン】をクリックしてください
 st.link_button(
-    "👉 八木さんの最新番組表を開く（外部サイト）", 
+    "👉 八木さんの最新番組表を開く（別タブで移動）", 
     "https://bangumi.org/talents/142568",
-    type="primary"
+    type="primary",
+    use_container_width=True
 )
 
 st.divider()
@@ -21,11 +23,15 @@ st.divider()
 st.subheader("💰 stand.fm「お金のしゃべり場」")
 st.write("FP1級の八木塾長が「お金」についておしゃべり！")
 
-# チャンネル全体のプレイヤー（更新不要で常に最新が表示されます）
+# 埋め込みプレイヤー
 st.components.v1.iframe("https://stand.fm/embed/channels/674833f669bc2015d09df281", height=450)
 
-# このボタンを押すと、stand.fm の公式ページが別タブで開きます
-st.link_button("📻 stand.fmで全エピソードを見る", "https://stand.fm/channels/674833f669bc2015d09df281")
+# この【ボタン】をクリックしてください
+st.link_button(
+    "📻 stand.fm の公式ページへ（別タブで移動）", 
+    "https://stand.fm/channels/674833f669bc2015d09df281",
+    use_container_width=True
+)
 
 st.divider()
 
@@ -34,8 +40,12 @@ st.subheader("🎙️ YouTube「芸人男塾」")
 latest_video_id = "q10EVteYbgw" 
 st.video(f"https://www.youtube.com/watch?v={latest_video_id}")
 
-# このボタンを押すと、YouTube が別タブで開きます
-st.link_button("🏮「芸人男塾」YouTubeへ", "https://www.youtube.com/@yagiotokojuku")
+# この【ボタン】をクリックしてください
+st.link_button(
+    "🏮 YouTube「芸人男塾」へ（別タブで移動）", 
+    "https://www.youtube.com/@yagiotokojuku",
+    use_container_width=True
+)
 
 st.divider()
 
