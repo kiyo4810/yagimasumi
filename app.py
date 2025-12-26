@@ -7,25 +7,26 @@ st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon
 # images/yagi_bg.jpg が GitHub の images フォルダ内にあることを前提としています
 bg_image_url = "https://www.streamlit.io/images/brand/streamlit-mark-color.png"
 
+# --- 背景画像の設定 (最新安定版CSS) ---
+# まずはテスト画像で確認。表示されたら以下のURLを八木さんのものに書き換えてください。
+test_url = "https://www.streamlit.io/images/brand/streamlit-mark-color.png"
+yagi_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi/main/images/yagi_bg.jpg"
+
 st.markdown(
     f"""
     <style>
+    /* 全体の背景を設定 */
     .stApp {{
-        background-image: url("{bg_image_url}");
+        background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+                    url("{yagi_url}");
         background-repeat: repeat;
         background-size: 200px auto;
         background-attachment: fixed;
     }}
-    /* 背景を30%の濃さにする（70%の白を被せる） */
-    .stApp::before {{
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.7);
-        z-index: -1;
+    
+    /* コンテンツを見やすくするために背景を白っぽく透過させる */
+    header, .main, .stApp {{
+        background-color: rgba(255, 255, 255, 0.3);
     }}
     </style>
     """,
