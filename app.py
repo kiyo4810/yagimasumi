@@ -1,9 +1,9 @@
 import streamlit as st
 
-st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon="📺")
+st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon="🇧🇷")
 
 # --- タイトル ---
-st.title("📺 サバンナ八木 応援ポータル")
+st.title("🇧🇷 サバンナ八木 応援ポータル")
 
 # --- セクション1：テレビ出演情報 ---
 st.subheader("🗓️ 最新のテレビ出演情報")
@@ -25,7 +25,7 @@ st.components.v1.iframe("https://stand.fm/embed/channels/674833f669bc2015d09df28
 # HTMLで「新しいタブ」をより強く指示するリンクの作り方
 st.markdown(
     """
-    <a href="https://stand.fm/channels/674833f669bc2015d09df281" target="_blank" rel="noopener noreferrer" 
+    <a href="https://stand.fm/channels/674833f669bc2015d09df281" target="_blank"
        style="display: inline-block; padding: 10px 20px; background-color: #008080; color: white; 
        text-decoration: none; border-radius: 5px; width: 100%; text-align: center;">
        📻 stand.fm 公式サイトを別タブで開く
