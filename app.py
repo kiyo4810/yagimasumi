@@ -2,21 +2,21 @@ import streamlit as st
 
 st.set_page_config(page_title="サバンナ八木 応援ポータル", page_icon="🇧🇷")
 
-# --- 画像URLの設定 ---
+# --- 背景画像の設定 ---
 yagi_url = "https://raw.githubusercontent.com/kiyo4810/yagimasumi/main/images/yagi_bg.jpg"
 
-# --- スタイル設定（背景1枚固定 ＆ ダークモード対策） ---
+# --- 【完全版】スタイル設定（背景1枚固定 ＆ ダークモード・エラー対策） ---
 st.markdown(
     f"""
     <style>
-    /* 1. 背景の設定：リピートを完全に禁止し、1枚を中央に固定 */
+    /* 1. 背景の設定：リピートを完全に禁止し、1枚を画面中央に固定 */
     .stApp {{
         background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
                           url("{yagi_url}");
-        background-repeat: no-repeat !important;
-        background-size: cover !important;
-        background-position: center !important;
-        background-attachment: fixed !important;
+        background-repeat: no-repeat !important; /* 絶対に繰り返さない */
+        background-size: cover !important;    /* 画面全体を覆う */
+        background-position: center !important; /* 中央に配置 */
+        background-attachment: fixed !important; /* スクロールしても固定 */
     }}
 
     /* 2. 基本の文字色：ダークモードでも読みやすく黒系に固定 */
@@ -24,15 +24,14 @@ st.markdown(
         color: #333333 !important;
     }}
 
-    /* 3. ボタンとリンクの調整（文字が消えるのを防ぐ） */
+    /* 3. ボタンとリンクの調整（文字が消えるのを防ぎ、背景を整える） */
     .stButton button p, .stLinkButton a span {{
         color: inherit !important;
     }}
-
-    /* 4. リンクボタン自体の背景を少し見やすくする */
+    
     .stLinkButton a {{
-        background-color: rgba(0, 0, 0, 0.05) !important;
-        border: 1px solid #cccccc !important;
+        background-color: #f0f2f6 !important;
+        border: 1px solid #d1d5db !important;
     }}
     </style>
     """,
@@ -65,17 +64,16 @@ st.link_button(
 
 st.divider()
 
-# --- セクション3：YouTube（修正版） ---
+# --- セクション3：YouTube ---
 st.subheader("🎙️ YouTube「芸人男塾」")
 
-# 動画の埋め込み（これは動作しているはずです）
+# 動画の埋め込み
 st.video("https://www.youtube.com/watch?v=q10EVteYbgw")
 
-# 【修正ポイント】YouTubeリンクのエラー対策
-# @記号付きのURLでエラーが出る場合、チャンネルのURLをこちらに差し替えてみてください
+# 【重要】YouTubeリンクの修正：チャンネルID形式に変更してエラーを回避
 st.link_button(
     "🏮 YouTube チャンネルを別タブで開く", 
-    "https://www.youtube.com/channel/UCy7V7L8hR4l_Xp76D9Wv5qA", # @yagiotokojuku のID版URL
+    "https://www.youtube.com/channel/UCixVg1_EWdG5pf0ok4OuELA", 
     use_container_width=True
 )
 
