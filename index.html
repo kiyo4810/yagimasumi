@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>八木真澄 出演情報（自動更新）</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        .program { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+        .date { font-weight: bold; color: #d35400; }
+    </style>
+</head>
+<body>
+    <h1>サバンナ八木さん出演情報</h1>
+    <div id="list">読み込み中...</div>
+
+    <script>
+        // GitHubに保存されるjsonファイルを読み込む
+        fetch('./data.json')
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById('list');
+                list.innerHTML = data.map(item => `
+                    <div class="program">
+                        <div class="date">${item.date}</div>
+                        <div><strong>${item.title}</strong></div>
+                        <div>${item.station}</div>
+                    </div>
+                `).join('') || '現在、予定されている出演番組はありません。';
+            });
+    </script>
+</body>
+</html>
